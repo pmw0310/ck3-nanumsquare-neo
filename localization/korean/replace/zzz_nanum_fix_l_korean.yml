@@ -1,4 +1,12 @@
 ﻿l_korean:
+ any_barony_holy_site:0 "[BARONY.GetProvince.GetBaronyNameExplicitly]의 성지:"
+ any_barony_holy_site_third:0 "[BARONY.GetProvince.GetBaronyNameExplicitly]의 성지:"
+ any_holy_site_faith:0 "[FAITH.GetName]의 성지여야 함"
+ any_holy_site_faith_global:0 "[FAITH.GetName]의 성지여야 함"
+ faith_this_equal:0 "내 신앙([FAITH.GetName])과 일치함"
+ faith_this_equal_global:0 "내 신앙([FAITH.GetName])과 일치함"
+ NOT_faith_this_equal:0 "내 신앙([FAITH.GetName])과 일치하지 않음"
+ NOT_faith_this_equal_global:0 "내 신앙([FAITH.GetName])과 일치하지 않음"
  ANY_BARONY_HOLY_SITE:0 "[BARONY.GetProvince.GetBaronyNameExplicitly]의 성지:"
  ANY_HOLY_SITE_FAITH:0 "[FAITH.GetName]의 성지여야 함"
  ANY_OF_MY_HOLY_SITES:0 "내 신앙의 성지:"
