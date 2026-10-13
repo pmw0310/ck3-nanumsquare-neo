@@ -1,0 +1,5 @@
+﻿l_korean:
+ ANY_BARONY_HOLY_SITE:0 "[BARONY.GetProvince.GetBaronyNameExplicitly]의 성지:"
+ ANY_HOLY_SITE_FAITH:0 "[FAITH.GetName]의 성지여야 함"
+ ANY_OF_MY_HOLY_SITES:0 "내 신앙의 성지:"
+ ALL_HOLY_SITE_FAITHS:0 "해당 성지의 모든 신앙:"

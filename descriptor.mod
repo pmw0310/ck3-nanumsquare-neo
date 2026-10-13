@@ -1,8 +1,9 @@
 version="1.0"
 tags={
-	"1.20 'Crozier'"
+	"Graphics"
+	"Fixes"
+	"Translation"
 }
-name="NanumSquareNeo"
+name="NanumSquareNeo (Custom Fixed)"
 picture="thumbnail.png"
-supported_version="1.20.0.3"
-remote_file_id="3813978327"
+supported_version="1.*.*"
