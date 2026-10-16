@@ -1,12 +1,20 @@
 #!/bin/bash
-# 커밋 생성 시 모드 버전을 자동으로 올립니다.
+# 커밋 생성 시 모드 핵심 파일(gui/, localization/, fonts/ 등)의 변경이 포함되어 있을 때만 모드 버전을 자동으로 올립니다.
 
 # Merge/Rebase 중에는 건너뜀
 if [ -f .git/MERGE_HEAD ] || [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
     exit 0
 fi
 
-if [ -f "descriptor.mod" ]; then
+# descriptor.mod가 이미 스테이징되어 있다면 (수동 버전 지정 등) 자동으로 올리지 않음
+if git diff --cached --name-only | grep -q "^descriptor.mod$"; then
+    exit 0
+fi
+
+# 모드 콘텐츠 파일(gui, localization, fonts, common, events 등)이 스테이징되었는지 확인
+MOD_CHANGED=$(git diff --cached --name-only | grep -E '^(gui/|localization/|fonts/|common/|events/|gfx/|music/|sound/)')
+
+if [ -n "$MOD_CHANGED" ] && [ -f "descriptor.mod" ]; then
     bash scripts/bump_version.sh
     git add descriptor.mod
 fi

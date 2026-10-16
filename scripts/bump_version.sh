@@ -16,7 +16,7 @@ mod_path = "descriptor.mod"
 with open(mod_path, "r", encoding="utf-8") as f:
     content = f.read()
 
-m = re.search(r'version="([^"]+)"', content)
+m = re.search(r'^version="([^"]+)"', content, re.MULTILINE)
 if not m:
     print("❌ version 속성을 찾을 수 없습니다.")
     sys.exit(1)
@@ -37,10 +37,9 @@ else:
     except ValueError:
         new_ver = f"{old_ver}.1"
 
-new_content = re.sub(r'version="[^"]+"', f'version="{new_ver}"', content, count=1)
+new_content = re.sub(r'^version="[^"]+"', f'version="{new_ver}"', content, count=1, flags=re.MULTILINE)
 with open(mod_path, "w", encoding="utf-8") as f:
     f.write(new_content)
 
 print(f"🚀 모드 버전 증가: v{old_ver} -> v{new_ver}")
 PYEOF
-
