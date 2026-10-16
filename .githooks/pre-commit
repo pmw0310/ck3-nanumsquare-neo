@@ -1,0 +1,14 @@
+#!/bin/bash
+# 커밋 생성 시 모드 버전을 자동으로 올립니다.
+
+# Merge/Rebase 중에는 건너뜀
+if [ -f .git/MERGE_HEAD ] || [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+    exit 0
+fi
+
+if [ -f "descriptor.mod" ]; then
+    bash scripts/bump_version.sh
+    git add descriptor.mod
+fi
+
+exit 0

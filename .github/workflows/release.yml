@@ -28,9 +28,14 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             TAG_NAME="${GITHUB_REF#refs/tags/}"
           else
-            # descriptor.mod 파일에서 version 속성 추출 (기본값: 1.0)
-            BASE_VERSION=$(grep -E 'version="[^"]+"' descriptor.mod | sed -E 's/.*version="([^"]+)".*/\1/' || echo "1.0")
-            TAG_NAME="v${BASE_VERSION}.${{ github.run_number }}"
+            # descriptor.mod 파일에서 version 속성 추출
+            BASE_VERSION=$(grep -E 'version="[^"]+"' descriptor.mod | sed -E 's/.*version="([^"]+)".*/\1/' || echo "1.0.0")
+            # 로컬/원격에 동일 태그가 이미 존재하는지 체크
+            if git rev-parse "v${BASE_VERSION}" >/dev/null 2>&1; then
+              TAG_NAME="v${BASE_VERSION}.${{ github.run_number }}"
+            else
+              TAG_NAME="v${BASE_VERSION}"
+            fi
           fi
           echo "tag_name=${TAG_NAME}" >> $GITHUB_OUTPUT
           echo "🏷️ Target Tag: ${TAG_NAME}"
